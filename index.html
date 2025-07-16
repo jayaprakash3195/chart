@@ -6,32 +6,40 @@
   <style>
     body {
       font-family: 'Latha', sans-serif;
-      background-color: #fffef9;
+      background: linear-gradient(to right, #fff9f2, #f9f9ff);
+      margin: 0;
+      padding: 0;
       text-align: center;
-      padding: 10px;
     }
 
     h2 {
-      color: darkred;
-      margin-bottom: 10px;
-      font-size: 20px;
+      color: #8b0000;
+      margin: 20px 0 10px;
+      font-size: 22px;
     }
 
     .legend {
+      position: sticky;
+      top: 0;
+      background: #fffef9;
+      z-index: 10;
+      padding: 6px;
       font-size: 14px;
-      margin-bottom: 10px;
+      border-bottom: 1px solid #ccc;
     }
 
     .legend span {
-      padding: 2px 6px;
+      padding: 4px 8px;
       margin: 0 5px;
-      border-radius: 4px;
+      border-radius: 6px;
       border: 1px solid #999;
+      font-weight: bold;
+      display: inline-block;
     }
 
-    .green { background-color: #a0ff9e; }
-    .blue { background-color: #add8ff; }
-    .orange { background-color: orange; }
+    .green { background-color: #b6ffbf; }
+    .blue { background-color: #cce7ff; }
+    .orange { background-color: #ffd97c; }
 
     .south-chart {
       display: grid;
@@ -41,54 +49,63 @@
         "r09 xx   xx  r02"
         "r08 xx   xx  r03"
         "r07 r06 r05 r04";
-      gap: 3px;
-      max-width: 720px;
-      margin: 0 auto;
+      gap: 6px;
+      max-width: 750px;
+      margin: 20px auto;
+      padding: 10px;
     }
 
     .box {
-      background-color: #fff3cc;
-      border: 2px solid brown;
-      font-size: 11px;
+      background-color: #fff9e6;
+      border: 2px solid #8b5c2c;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+      font-size: 11.5px;
       color: #4b1d1d;
-      box-sizing: border-box;
+      border-radius: 12px;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: stretch;
       justify-content: flex-start;
-      padding: 4px;
+      padding: 6px;
       text-align: left;
-      height: 180px;
+      height: 220px;
+      overflow-y: auto;
     }
 
     .rasi-name {
       font-weight: bold;
-      font-size: 15px;
-      color: maroon;
-      margin-bottom: 3px;
+      font-size: 16px;
+      color: #6a040f;
       text-align: center;
+      margin-bottom: 5px;
     }
 
     .line {
-      line-height: 1.2;
+      line-height: 1.3;
+      padding: 2px 4px;
+      border-radius: 4px;
       cursor: pointer;
-      width: 100%;
+      transition: background-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .line:hover {
-      background-color: #ffe;
-    }
-
-    .highlight-green {
-      background-color: #a0ff9e !important;
-    }
-
-    .highlight-blue {
-      background-color: #add8ff !important;
+      background-color: #fff2cc;
     }
 
     .highlight-orange {
-      background-color: rgba(241, 226, 4, 0.904) !important;
+      background-color: #ffe98c !important;
+      font-weight: bold;
+      box-shadow: inset 0 0 6px #ffaf00;
+    }
+
+    .highlight-green {
+      background-color: #b6ffbf !important;
+      box-shadow: inset 0 0 4px #2c8a35;
+    }
+
+    .highlight-blue {
+      background-color: #cce7ff !important;
+      box-shadow: inset 0 0 4px #006699;
     }
 
     .r01 { grid-area: r11; }
@@ -117,17 +134,19 @@
       }
 
       .box {
-        height: auto;
-        font-size: 12px;
+        max-height: 240px;
+        overflow-y: auto;
+        font-size: 13px;
       }
 
       .rasi-name {
-        font-size: 14px;
+        font-size: 15px;
       }
     }
   </style>
 </head>
 <body>
+
   <h2>🌟 தென் இந்திய ராசி கட்டம் - 108 நட்சத்திர பாதங்கள் 🌟</h2>
   <div class="legend">
     <span class="orange">தற்போதைய பாதம்</span>
@@ -154,7 +173,6 @@
       { name: "கும்பம்", code: "r11", padas: ["அவிட்டம் - பாதம் 3", "அவிட்டம் - பாதம் 4", "சதயம் - பாதம் 1", "சதயம் - பாதம் 2", "சதயம் - பாதம் 3", "சதயம் - பாதம் 4", "பூரட்டாதி - பாதம் 1", "பூரட்டாதி - பாதம் 2", "பூரட்டாதி - பாதம் 3"] },
       { name: "மீனம்", code: "r12", padas: ["பூரட்டாதி - பாதம் 4", "உத்திரட்டாதி - பாதம் 1", "உத்திரட்டாதி - பாதம் 2", "உத்திரட்டாதி - பாதம் 3", "உத்திரட்டாதி - பாதம் 4", "ரேவதி - பாதம் 1", "ரேவதி - பாதம் 2", "ரேவதி - பாதம் 3", "ரேவதி - பாதம் 4"] }
     ];
-
     let padaCounter = 1;
     const chart = document.getElementById("rasiChart");
 
